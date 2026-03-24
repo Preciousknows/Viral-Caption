@@ -1,0 +1,16 @@
+{
+  "name": "viral-caption",
+  "version": "1.0.0",
+  "description": "A modern responsive SaaS-style TikTok caption generator web application",
+  "main": "index.html",
+  "scripts": {
+    "dev": "npx tailwindcss -i ./src/input.css -o ./dist/output.css --watch",
+    "build": "npx tailwindcss -i ./src/input.css -o ./dist/output.css --minify"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.0"
+  },
+  "keywords": ["tiktok", "caption", "generator", "saas", "web-app"],
+  "author": "",
+  "license": "MIT"
+}

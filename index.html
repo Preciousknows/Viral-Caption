@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ViralCaption - Generate Viral TikTok Captions Instantly</title>
+    <meta name="description" content="Generate engaging TikTok captions instantly with our AI-powered caption generator. Choose mood and category to get scroll-stopping captions.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'inter': ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        slate: {
+                            900: '#0f172a',
+                        },
+                        indigo: {
+                            400: '#6366f1',
+                            500: '#6366f1',
+                            600: '#4f46e5',
+                            700: '#4338ca',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-slate-900 text-white font-['Inter']">
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full bg-slate-900/95 backdrop-blur-sm z-50 border-b border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-4">
+                <div class="flex items-center">
+                    <h1 class="text-2xl font-bold text-indigo-400">ViralCaption</h1>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#generator" class="text-gray-300 hover:text-white transition-colors">Generator</a>
+                    <a href="#how-it-works" class="text-gray-300 hover:text-white transition-colors">How it Works</a>
+                    <a href="#categories" class="text-gray-300 hover:text-white transition-colors">Categories</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="pt-24 pb-16 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-4xl mx-auto text-center">
+            <h1 class="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent">
+                Generate Viral TikTok Captions Instantly
+            </h1>
+            <p class="text-xl text-gray-300 mb-12 max-w-2xl mx-auto">
+                Choose a caption mood and category and get scroll-stopping captions in seconds.
+            </p>
+
+            <!-- Generator Tool -->
+            <div id="generator" class="bg-slate-800 rounded-2xl p-8 mb-8 shadow-2xl border border-slate-700">
+                <div class="grid md:grid-cols-2 gap-6 mb-6">
+                    <!-- Mood Selector -->
+                    <div>
+                        <label class="block text-sm font-medium text-gray-300 mb-2">Caption Mood</label>
+                        <select id="mood-select" class="w-full bg-slate-700 border border-slate-600 rounded-lg px-4 py-3 text-white focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
+                            <option value="">Select mood...</option>
+                            <option value="motivational">Motivational</option>
+                            <option value="funny">Funny</option>
+                            <option value="romantic">Romantic</option>
+                            <option value="business">Business</option>
+                            <option value="storytelling">Storytelling</option>
+                            <option value="pov">POV</option>
+                            <option value="lifestyle">Lifestyle</option>
+                        </select>
+                    </div>
+
+                    <!-- Category Selector -->
+                    <div>
+                        <label class="block text-sm font-medium text-gray-300 mb-2">Content Category</label>
+                        <select id="category-select" class="w-full bg-slate-700 border border-slate-600 rounded-lg px-4 py-3 text-white focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
+                            <option value="">Select category...</option>
+                            <option value="success">Success</option>
+                            <option value="love">Love</option>
+                            <option value="hustle">Hustle</option>
+                            <option value="failure">Failure</option>
+                            <option value="growth">Growth</option>
+                            <option value="confidence">Confidence</option>
+                            <option value="daily-life">Daily Life</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Generate Button -->
+                <button id="generate-btn" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-4 px-6 rounded-lg transition-colors duration-200 mb-6 disabled:opacity-50 disabled:cursor-not-allowed">
+                    Generate Caption
+                </button>
+
+                <!-- Generated Caption Display -->
+                <div id="caption-output" class="hidden">
+                    <div class="bg-slate-700 rounded-lg p-6 mb-4">
+                        <p id="caption-text" class="text-lg leading-relaxed"></p>
+                    </div>
+                    <div class="flex gap-4">
+                        <button id="copy-btn" class="flex-1 bg-slate-600 hover:bg-slate-500 text-white font-semibold py-3 px-4 rounded-lg transition-colors duration-200">
+                            Copy Caption
+                        </button>
+                        <button id="generate-another-btn" class="flex-1 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 px-4 rounded-lg transition-colors duration-200">
+                            Generate Another
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section id="how-it-works" class="py-16 px-4 sm:px-6 lg:px-8 bg-slate-800/50">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">How It Works</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-indigo-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span class="text-2xl">🎯</span>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Choose Caption Mood</h3>
+                    <p class="text-gray-300">Select from motivational, funny, romantic, business, storytelling, POV, or lifestyle moods.</p>
+                </div>
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-indigo-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span class="text-2xl">⚡</span>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Click Generate</h3>
+                    <p class="text-gray-300">Our algorithm instantly creates a viral-ready caption tailored to your selection.</p>
+                </div>
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-indigo-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span class="text-2xl">📱</span>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Copy and Post</h3>
+                    <p class="text-gray-300">Copy the caption with one click and paste it directly into your TikTok video.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section id="categories" class="py-16 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">Caption Categories</h2>
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                <div class="category-card bg-slate-800 rounded-xl p-6 text-center hover:bg-slate-700 transition-colors cursor-pointer border border-slate-700 hover:border-indigo-500" data-category="motivational">
+                    <div class="text-3xl mb-3">💪</div>
+                    <h3 class="text-lg font-semibold">Motivational</h3>
+                </div>
+                <div class="category-card bg-slate-800 rounded-xl p-6 text-center hover:bg-slate-700 transition-colors cursor-pointer border border-slate-700 hover:border-indigo-500" data-category="funny">
+                    <div class="text-3xl mb-3">😂</div>
+                    <h3 class="text-lg font-semibold">Funny</h3>
+                </div>
+                <div class="category-card bg-slate-800 rounded-xl p-6 text-center hover:bg-slate-700 transition-colors cursor-pointer border border-slate-700 hover:border-indigo-500" data-category="romantic">
+                    <div class="text-3xl mb-3">❤️</div>
+                    <h3 class="text-lg font-semibold">Romantic</h3>
+                </div>
+                <div class="category-card bg-slate-800 rounded-xl p-6 text-center hover:bg-slate-700 transition-colors cursor-pointer border border-slate-700 hover:border-indigo-500" data-category="business">
+                    <div class="text-3xl mb-3">💼</div>
+                    <h3 class="text-lg font-semibold">Business</h3>
+                </div>
+                <div class="category-card bg-slate-800 rounded-xl p-6 text-center hover:bg-slate-700 transition-colors cursor-pointer border border-slate-700 hover:border-indigo-500" data-category="pov">
+                    <div class="text-3xl mb-3">👀</div>
+                    <h3 class="text-lg font-semibold">POV</h3>
+                </div>
+                <div class="category-card bg-slate-800 rounded-xl p-6 text-center hover:bg-slate-700 transition-colors cursor-pointer border border-slate-700 hover:border-indigo-500" data-category="lifestyle">
+                    <div class="text-3xl mb-3">🌟</div>
+                    <h3 class="text-lg font-semibold">Lifestyle</h3>
+                </div>
+                <div class="category-card bg-slate-800 rounded-xl p-6 text-center hover:bg-slate-700 transition-colors cursor-pointer border border-slate-700 hover:border-indigo-500" data-category="storytelling">
+                    <div class="text-3xl mb-3">📖</div>
+                    <h3 class="text-lg font-semibold">Storytelling</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="py-16 px-4 sm:px-6 lg:px-8 bg-slate-800/50">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">Why Choose ViralCaption?</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-indigo-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span class="text-2xl">⏰</span>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Save Time</h3>
+                    <p class="text-gray-300">Generate engaging captions in seconds instead of spending minutes thinking of what to write.</p>
+                </div>
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-indigo-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span class="text-2xl">📈</span>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Boost Engagement</h3>
+                    <p class="text-gray-300">Our captions are optimized for TikTok algorithms to help increase views and interactions.</p>
+                </div>
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-indigo-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span class="text-2xl">🎯</span>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Stay Consistent</h3>
+                    <p class="text-gray-300">Maintain a consistent posting schedule with high-quality captions that match your brand.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Email Waitlist Section -->
+    <section class="py-16 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-2xl mx-auto text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6">Join the Waitlist</h2>
+            <p class="text-xl text-gray-300 mb-8">Be the first to know when we launch advanced AI features and premium caption packs.</p>
+            <div class="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
+                <input type="email" id="email-input" placeholder="Enter your email address" class="flex-1 bg-slate-800 border border-slate-600 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
+                <button id="waitlist-btn" class="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200 whitespace-nowrap">
+                    Join Waitlist
+                </button>
+            </div>
+            <p id="waitlist-message" class="mt-4 text-green-400 hidden">Thanks for joining early access!</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-slate-800 py-12 px-4 sm:px-6 lg:px-8 border-t border-slate-700">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold text-indigo-400 mb-4">ViralCaption</h3>
+                    <p class="text-gray-300">The fastest way to generate viral TikTok captions.</p>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Product</h4>
+                    <ul class="space-y-2 text-gray-300">
+                        <li><a href="#generator" class="hover:text-white transition-colors">Generator</a></li>
+                        <li><a href="#categories" class="hover:text-white transition-colors">Categories</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Pricing</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Company</h4>
+                    <ul class="space-y-2 text-gray-300">
+                        <li><a href="#" class="hover:text-white transition-colors">About</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Contact</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Blog</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Legal</h4>
+                    <ul class="space-y-2 text-gray-300">
+                        <li><a href="#" class="hover:text-white transition-colors">Privacy Policy</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Terms of Service</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Coming Soon</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-slate-700 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2024 ViralCaption. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="./script.js"></script>
+</body>
+</html>
